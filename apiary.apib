@@ -136,3 +136,137 @@ Get all open invoices based on SCFId and account for the specified page under th
                 "balance_due": 10030
             }
          ]
+         
+         
+
+## All Paid Invoices [/payment{?page}]
+### Get All Paid Invoices [GET]
+Get all paid invoices based on SCFId and account for specified page
++ Parameters
+    + page (optional, number, `1`) the page of paid invoices to return
+
++ Request (application/json)
+
+        {
+            "SCFId": "scfid_123456",
+            "account": [
+                {
+                    "user_name": "Robert Chandler",
+                    "user_id": 3843874,
+                    "account_permission": [
+                        {
+                            "invoice": "write",
+                            "payment": "write",
+                            "card_management": "write",
+                            "account_maintenance": "read"
+                        }
+                    ]
+                }
+            ]
+        }
+
++ Response 200 (application/json)
+    
+        [
+            {
+                "account_number": "3843874",
+                "location_id": 3,
+                "due_date": "09/10/2016",
+                "invoice_date": "09/10/2016",
+                "invoice_number": "SHL4500",
+                "invoice_amount": 10000,
+                "balance_due": 10030
+            }
+         ]   
+
+## Invoice [/payment/{invoice_numbers}{?page}]
++ Parameters 
+    + invoice_numbers (required) ... Invoice #'s in form of array of string
+    + page (optional, number, `1`) the page of invoices to return
+
+### Get Payment History by invoice_number [GET]
+Get a single payment history by invoice_number
++ Request (application/json)
+
+        {
+            "SCFId": "123456",
+            "account": [
+                {
+                    "user_name": "Robert Chandler",
+                    "user_id": 3843874,
+                    "account_permission": [
+                        {
+                            "invoice": "write",
+                            "payment": "write",
+                            "card_management": "write",
+                            "account_maintenance": "read"
+                        }
+                    ]
+                }
+            ],
+            "invoice_numbers":[
+                "invoice_number": "SHL4500",
+                "invoice_number": "SHL4500 H"
+            ]
+        }
+        
++ Response 200 (application/json)
+      
+        [ 
+            {
+                "account_number": "3843874",
+                "location_id": 2,
+                "due_date": "09/10/2016",
+                "invoice_date": "09/10/2016",
+                "invoice_number": "SHL4500",
+                "invoice_amount": 10000,
+                "balance_due": 10030
+            }
+        ]
+
+
+## Advance Search for Paid Invoices [/payment{?page}{?invoice_number}{?service_type}{?due_date_from}{?due_date_to}{?balance_due_from}{?balance_due_to}]
+### Get All Paid Invoices under the search criteria [GET]
+Get all paid invoices based on SCFId and account for the specified page under the defined criteria
++ Parameters
+    + page (optional, number, `1`) ... the page of invoices to return
+    + invoice_number (optional) ... the number of invoices to return
+    + service_type (optional) ... type of service of invoices to return
+    + due_date_from (optional) ... the starting date of invoices to return
+    + due_date_to (optional) ... the end date of invoices to return
+    + balance_due_from (optional, number) ... the lowest amount of invoices to return
+    + balance_due_to (optional, number)... the largest amount of invoices to return
+
++ Request (application/json)
+
+        {
+            "SCFId": "scfid_123456",
+            "account": [
+                {
+                    "user_name": "Robert Chandler",
+                    "user_id": 3843874,
+                    "account_permission": [
+                        {
+                            "invoice": "write",
+                            "payment": "write",
+                            "card_management": "write",
+                            "account_maintenance": "read"
+                        }
+                    ]
+                }
+            ]
+        }
+
++ Response 200 (application/json)
+    
+        [
+            {
+                "account_number": "3843874",
+                "location_id": 3,
+                "due_date": "09/10/2016",
+                "invoice_date": "09/10/2016",
+                "invoice_number": "SHL4500",
+                "invoice_amount": 10000,
+                "balance_due": 10030
+            }
+         ]
