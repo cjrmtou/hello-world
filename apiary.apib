@@ -139,8 +139,8 @@ Get all open invoices based on SCFId and account for the specified page under th
          
          
 
-## All Paid Invoices [/payment{?page}]
-### Get All Paid Invoices [GET]
+## All Payment History [/payment{?page}]
+### Get all payment history [GET]
 Get all paid invoices based on SCFId and account for specified page
 + Parameters
     + page (optional, number, `1`) the page of paid invoices to return
@@ -191,13 +191,13 @@ Get all paid invoices based on SCFId and account for specified page
             }
          ]   
 
-## Invoice [/payment/{invoice_numbers}{?page}]
+## Payment history [/payment/{invoice_numbers}{?page}]
 + Parameters 
     + invoice_numbers (required) ... Invoice #'s in form of array of string
     + page (optional, number, `1`) the page of invoices to return
 
 ### Get Payment History by invoice_number [GET]
-Get a single payment history by invoice_number
+Get payment history by invoice_number, can be single or multiple invoice_number's
 + Request (application/json)
 
         {
@@ -253,8 +253,8 @@ Get a single payment history by invoice_number
         ]   
 
 
-## Advance Search for Paid Invoices [/payment{?page}{?invoice_number}{?service_type}{?due_date_from}{?due_date_to}{?payment_mode}]
-### Get All Paid Invoices under the search criteria [GET]
+## Advance Search for Payment History [/payment{?page}{?invoice_number}{?service_type}{?due_date_from}{?due_date_to}{?payment_mode}]
+### Get all payment history under the search criteria [GET]
 Get all paid invoices based on SCFId and account for the specified page under the defined criteria
 + Parameters
     + page (optional, number, `1`) ... the page of paid invoices to return
