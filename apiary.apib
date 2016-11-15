@@ -224,17 +224,29 @@ Get a single payment history by invoice_number
         
 + Response 200 (application/json)
       
-        [ 
+        [
             {
                 "account_number": "3843874",
-                "location_id": 2,
-                "due_date": "09/10/2016",
+                "location_id": 3,
                 "invoice_date": "09/10/2016",
                 "invoice_number": "SHL4500",
                 "invoice_amount": 10000,
-                "balance_due": 10030
+                "payment_date": "09/13/2016",
+                "payment_mode": "EFT",
+                "attachments": [
+                    {
+                        "file_name": "PaidInvoice.pdf",
+                        "file_type": "pdf",
+                        "file_location": "\\files\\invoices"
+                    },
+                    {
+                        "file_name": "DeliveryTicket.jpg",
+                        "file_type": "jpg",
+                        "file_location": "\\files\\DeliveryTickets"
+                    }
+                ]
             }
-        ]
+        ]   
 
 
 ## Advance Search for Paid Invoices [/payment{?page}{?invoice_number}{?service_type}{?due_date_from}{?due_date_to}{?balance_due_from}{?balance_due_to}]
