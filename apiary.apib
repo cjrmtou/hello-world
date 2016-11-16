@@ -4,6 +4,40 @@ HOST: http://scf.apiblueprint.org/
 # scf
 Design of APIs for SCF Portal project
 
+## Account Balances [/balance]
+### Get Total, Overdue, and Due in 5 days [GET]
+Get the total amount due, overdue, and amount due within 5 days
+
++ Request (application/json)
+
+        {
+            "SCFId": "scfid_123456",
+            "account": [
+                {
+                    "user_name": "Robert Chandler",
+                    "user_id": 3843874,
+                    "account_permission": [
+                        {
+                            "invoice": "write",
+                            "payment": "write",
+                            "card_management": "write",
+                            "account_maintenance": "read"
+                        }
+                    ]
+                }
+            
+            ]
+        }
+
++ Response 200 (application/json)
+        
+        {
+            "total_due": 450130,
+            "overdue": 20130,
+            "due_within_5days": 110100
+        } 
+
+
 ## All Open Invoices [/invoices{?page}]
 ### Get All Open Invoices [GET]
 Get all open invoices based on SCFId and account for specified page
@@ -315,35 +349,3 @@ Get all paid invoices based on SCFId and account for the specified page under th
                 ]
             }
          ]
-         
-
-## Balance [/balance]
-### Get Total, Overdue, and Due in 5 days
-Get the total amount due, overdue, and amount due within 5 days
-+ Request (application/json)
-
-        {
-            "SCFId": "scfid_123456",
-            "account": [
-                {
-                    "user_name": "Robert Chandler",
-                    "user_id": 3843874,
-                    "account_permission": [
-                        {
-                            "invoice": "write",
-                            "payment": "write",
-                            "card_management": "write",
-                            "account_maintenance": "read"
-                        }
-                    ]
-                }
-            
-            ]
-        }
-
-+ Response 200 (application/json)
-        {
-            "total_due": 450130,
-            "overdue": 20130,
-            "due_within_5days": 110100
-        }
